@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>957</width>
+    <height>576</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+    background-color: #0f1a2b;  /* azul muy oscuro */
+    color: #f8c0f0;             /* rosa claro para texto general */
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 12pt;
+}</string>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
+      <item>
+       <widget class="QFrame" name="menu_2">
+        <property name="styleSheet">
+         <string notr="true">QFrame {
+    background-color: #11203b;   /* azul oscuro */
+    border-bottom: 2px solid #1a2a4b;
+}
+
+/* Botones del menú */
+QPushButton {
+    background-color: #1a2a4b;   /* azul oscuro */
+    color: #f8c0f0;              /* rosa claro */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #2e3a6b;   /* azul medio para hover */
+    color: #ff99ff;              /* rosa más brillante al pasar */
+}
+
+/* QLineEdit de búsqueda */
+QLineEdit{
+    background-color: #1a2a4b;
+    color: #f8c0f0;
+    border: 1px solid #2e3a6b;
+    border-radius: 5px;
+    padding: 4px 8px;
+}</string>
+        </property>
+        <layout class="QHBoxLayout" name="menu">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Game Launcher</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnTodos">
+           <property name="text">
+            <string>Todos los juegos</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnCategorias">
+           <property name="text">
+            <string>Categorías</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnConfiguracion">
+           <property name="text">
+            <string>Configuración</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="gamesScroll">
+        <property name="styleSheet">
+         <string notr="true">/* ScrollArea / zona de juegos */
+#gamesScroll {
+    background-color: #0f1a2b;
+    border: none;
+}
+
+/* Contenedor de tarjetas */
+#gamesContainer {
+    background-color: transparent;
+}
+
+/* Tarjeta de juego (GameCard) */
+#gameCard {
+    background-color: #11203b;   /* azul oscuro */
+    border: 1px solid #1a2a4b;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#gameTitle {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #f8c0f0;
+}
+
+#gameCategory {
+    font-size: 10pt;
+    color: #ff99ff;  /* rosa */
+}
+
+#btnPlay {
+    background-color: #1a2a4b;
+    color: #f8c0f0;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+#btnPlay:hover {
+    background-color: #2e3a6b;
+    color: #ff99ff;
+}</string>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="gamesContainer">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>937</width>
+           <height>456</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="btnAdd">
+            <property name="styleSheet">
+             <string notr="true">#btnAdd {
+    background-color: rgba(100, 100, 100, 0.6); /* gris difuminado semi-transparente */
+    color: white;               /* texto blanco */
+    border-radius: 12px;        /* bordes redondeados */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#btnAdd:hover {
+    background-color: rgba(120, 120, 120, 0.8); /* gris más claro al hover */
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>957</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
