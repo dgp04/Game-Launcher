@@ -36,13 +36,14 @@ class Game_Card(QWidget):
         self.frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.frame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.gameName = QLabel(self.frame)
-        self.gameName.setObjectName(u"gameName")
-
-        self.verticalLayout_2.addWidget(self.gameName)
 
         self.gameImage = QLabel(self.frame)
         self.gameImage.setObjectName(u"gameImage")
+
+        self.gameName = QLabel(self.frame)
+        self.gameName.setObjectName(u"gameName")
+        
+        self.verticalLayout_2.addWidget(self.gameName)
 
         self.verticalLayout_2.addWidget(self.gameImage)
 
@@ -64,8 +65,24 @@ class Game_Card(QWidget):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        image_path = self.game_data.get("image", "")
+
+        if image_path:
+            pixmap = QPixmap(image_path)
+            if not pixmap.isNull():
+                self.gameImage.setPixmap(
+                    pixmap.scaled(
+                        160, 200,
+                        Qt.KeepAspectRatio,
+                        Qt.SmoothTransformation
+                    )
+                )
+            else:
+                self.gameImage.setText("No image")
+        else:
+            self.gameImage.setText("No image")
+
         self.gameName.setText(QCoreApplication.translate("Form", self.game_data["name"], None))
-        self.gameImage.setText(QCoreApplication.translate("Form", self.game_data["category"], None))
         self.btnPlay.setText(QCoreApplication.translate("Form", u"Play", None))
     # retranslateUi
 

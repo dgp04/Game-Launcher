@@ -21,6 +21,7 @@ from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QVBoxLayout, QWidget, QDialog)
 from game_card import *
 from add_form import Add_Dialog
+from utils.ini_manager import load_games_from_ini
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -195,32 +196,11 @@ class MainWindow(QMainWindow):
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
         
-        game_example = {
-            "name": "Super Test Game",
-            "category": "Acción",
-            "exe": "C:/Juegos/SuperTestGame/game.exe",
-            "image": "C:/Users/david/Desktop/DESMUME - 64 bits/a.png"
-        }
-
-        # Suponiendo que GameCard toma un diccionario con los datos del juego
-        card = Game_Card(game_example)
-
-        """col_count = 4  # nº de tarjetas por fila
-
-        row = index // col_count
-        col = index % col_count"""
-        
-        row = 0
-        col = 1
-
-        self.gridLayout.addWidget(card, row, col)
-
-        
         self.gridLayout.setSpacing(10)
         self.gridLayout.setContentsMargins(10, 10, 10, 10)
 
         self.gridLayout.addWidget(self.btnAdd, 0, 0)
-        self.gridLayout.addWidget(card, 0, 1)
+        self.load_games()
 
         self.gridLayout.setColumnStretch(0, 0)
         self.gridLayout.setColumnStretch(1, 0)
@@ -245,6 +225,39 @@ class MainWindow(QMainWindow):
     def open_add_dialog(self):
         self.add_game_dialog = Add_Game_Dialog()
         self.add_game_dialog.show()
+        if self.add_game_dialog.exec():
+            self.clear_games()
+            self.load_games()
+            
+    def clear_games(self):
+        for i in reversed(range(self.gridLayout.count())):
+            widget = self.gridLayout.itemAt(i).widget()
+            if widget and widget != self.btnAdd:
+                widget.setParent(None)
+        
+    def load_games(self):
+        games = load_games_from_ini()
+
+        col_count = 4
+        index = 0
+
+        for game in games:
+            card = Game_Card(game)
+
+            if index < col_count - 1:
+                # PRIMERA FILA (solo 3 juegos)
+                row = 0
+                col = index + 1   # columnas 1,2,3
+            else:
+                # RESTO DE FILAS
+                new_index = index - (col_count - 1)
+                row = 1 + (new_index // col_count)
+                col = new_index % col_count
+
+            self.gridLayout.addWidget(card, row, col)
+            index += 1
+
+
 
 class Add_Game_Dialog(Add_Dialog, QDialog):
     def __init__(self):

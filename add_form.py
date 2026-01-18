@@ -214,6 +214,8 @@ class Add_Dialog(QDialog):
         config.set(section, "category", game_data["category"])
         config.set(section, "exe", game_data["exe"])
         config.set(section, "image", game_data["image"])
+        print(game_data["image"])
+        print(config.get(section, "image"))
 
         with open(GAMES_INI, "w", encoding="utf-8") as f:
             config.write(f)
@@ -222,7 +224,9 @@ class Add_Dialog(QDialog):
         name = self.nameLineEdit.text().strip()
         category = self.categoryLineEdit.text().strip()
         exe = getattr(self, "game_path", "")
-        image = getattr(self, "image_path", "")
+        image = getattr(self, "cover_path", "")
+        
+        print("image: ", image)
 
         if not name or not exe:
             return
