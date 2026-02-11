@@ -132,7 +132,7 @@ class MainWindow(QMainWindow):
 "}\n"
 "\n"
 "#gameTitle {\n"
-"    font-size: 14pt;\n"
+"    font-size: 10pt;\n"
 "    font-weight: bold;\n"
 "    color: #f8c0f0;\n"
 "}\n"
@@ -205,7 +205,7 @@ class MainWindow(QMainWindow):
         self.gridLayout.setColumnStretch(0, 0)
         self.gridLayout.setColumnStretch(1, 0)
         self.gridLayout.setColumnStretch(2, 1)
-
+        self.gridLayout.setAlignment(Qt.AlignTop)
 
 
         self.retranslateUi(MainWindow)
@@ -256,8 +256,6 @@ class MainWindow(QMainWindow):
 
             self.gridLayout.addWidget(card, row, col)
             index += 1
-
-
 
 class Add_Game_Dialog(Add_Dialog, QDialog):
     def __init__(self):

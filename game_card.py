@@ -26,7 +26,7 @@ class Game_Card(QWidget):
     def setupUi(self, Form, game_data):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.setFixedSize(180, 240)
+        Form.setFixedSize(180, 250)
         self.game_data = game_data
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -38,22 +38,27 @@ class Game_Card(QWidget):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
 
         self.gameImage = QLabel(self.frame)
+        self.gameImage.setAlignment(Qt.AlignCenter)
+        self.gameImage.setMinimumHeight(190)  # más espacio para imagen
+        self.gameImage.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
         self.gameImage.setObjectName(u"gameImage")
-
-        self.gameName = QLabel(self.frame)
-        self.gameName.setObjectName(u"gameName")
+        self.gameImage.setToolTip(f"{self.game_data['name']}")
         
-        self.verticalLayout_2.addWidget(self.gameName)
-
         self.verticalLayout_2.addWidget(self.gameImage)
+        #self.verticalLayout_2.addWidget(self.gameName)
+
 
         self.btnPlay = QPushButton(self.frame)
+        self.btnPlay.setFixedHeight(28)
         self.btnPlay.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnPlay.setObjectName(u"btnPlay")
         
 
         self.verticalLayout_2.addWidget(self.btnPlay)
-
+        self.verticalLayout_2.setStretch(0, 15)
+        self.verticalLayout_2.setStretch(1, 1)
+        self.verticalLayout_2.setStretch(2, 1)
 
         self.verticalLayout.addWidget(self.frame)
 
@@ -72,8 +77,8 @@ class Game_Card(QWidget):
             if not pixmap.isNull():
                 self.gameImage.setPixmap(
                     pixmap.scaled(
-                        160, 200,
-                        Qt.KeepAspectRatio,
+                        self.gameImage.size(),
+                        Qt.KeepAspectRatioByExpanding,
                         Qt.SmoothTransformation
                     )
                 )
@@ -82,7 +87,6 @@ class Game_Card(QWidget):
         else:
             self.gameImage.setText("No image")
 
-        self.gameName.setText(QCoreApplication.translate("Form", self.game_data["name"], None))
         self.btnPlay.setText(QCoreApplication.translate("Form", u"Play", None))
     # retranslateUi
 

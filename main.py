@@ -9,4 +9,12 @@ class main_window(MainWindow):
 app = QApplication([])
 ventana = main_window()
 ventana.show()
+app.setStyleSheet(u"QToolTip {\n"
+    "background-color: #1a2a4b;\n"
+    "color: #ff99ff;\n"
+    "border: 1px solid #ff99ff;\n"
+    "padding: 5px;\n"
+    "border-radius: 6px;\n"
+    "font-size: 11pt;\n"
+"}")
 app.exec()
